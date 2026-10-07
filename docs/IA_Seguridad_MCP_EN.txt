@@ -1,0 +1,637 @@
+A programmer opens code with cloud
+code, that's all, he doesn't execute anything, he doesn't
+test any actions, he doesn't grant any
+permissions.  At that moment, a
+remote attacker is already running commands on your
+computer.  And this is not theory, it is a
+real case documented in early
+2026 in the official coding tool
+of Antropic, the company behind
+Cloud.  And it is not an isolated case in the
+symptom of the largest attack surface
+of the already
+[clearing] artificial intelligence
+that has been created so far.  That's why in
+this video we're going to see what an
+MCP server is so that everyone
+understands.  Don't worry, we'll
+explain it simply so that
+anyone without prior knowledge can understand
+what we're talking about.  We're going to explain
+why it became the weak link
+of all artificial intelligence agents
+.  What are the five types
+of attacks that are exploding right now,
+and what can we do to
+defend against or anticipate them?  All of
+this is explained at a level that anyone
+can understand; they
+can even listen to it as an anecdote or a
+story.  Ultimately,
+knowledge doesn't take up space, but to
+understand what we're talking about, the
+first thing we need to answer and
+understand very briefly is what an
+MCP is.  [clears throat]
+Before we talk about attacks, we need to
+understand what this is.  MCP stands for
+Model Context Protocol.
+In English it is read as MCP and stands for
+model context protocol.  Translated into
+Spanish, it is model context protocol
+.  It is an open standard created
+by Antropic in November 2024 and its
+function is very simple to describe.
+It allows an AI model, for
+example Cloud, CHPT or any other, to
+connect with external tools,
+databases, file systems, email,
+calendars, code repositories and
+execute actions on them.  That's where we
+stand.  before MCP.  In fact, each
+of her applications connected to each
+tool in its own way.  Well, MCP
+unified that.  That's why many
+describe them as the universal standard that
+allows people to use the
+real world.  [snort] Now, to make
+this a little clearer, don't be
+alarmed, know that all
+MCP communication has three parts.
+[music] in what you are seeing on
+screen.  On the left side is the host,
+also called the client.  It is the
+application that the end user already uses
+.  For example, a cloud-based desktop,
+a cursor, or a code editor with an
+agent.  The MCP server is in the center of the image on the
+screen.  This
+server is simply a program
+written by someone who declares what
+tools it offers and knows how to run
+each one.  On the right side is the
+resource that the server connects to.  It could
+be a GitHub repository, an
+email inbox, a database, or
+any system.  This is the critical point that they need to
+take into account.  The
+Deya model does not talk directly to
+GitHub or the database; it talks to
+an intermediate MCP server.
+That intermediate server is code
+written by a third party.  And pay attention to that
+point.  That point is key.  That's why
+we should remember that, a third party.  So
+why did MCP become the standard?
+Well, in less than 18 months MCP went from
+being an Antropic proposal to being
+adopted by major manufacturers
+already, including OpenEI, which is
+the company behind
+CHPT, as well as Google and even
+Microsoft, to mention some of the most
+popular companies.  By 2026, there were already more than 7000
+registered public MCP servers.
+According to the consulting firm Gartner, by the end of
+2026, 40% of
+enterprise applications will have
+integrated agents, and the average organization already
+manages 37 deployed agents, a number
+that grows every quarter, every
+month, every day.  And this
+explosive growth has a direct consequence
+that almost no one is measuring.
+Each MCP server that connects to a
+person is a new door opened to the
+system, and each of those doors
+can become a clear
+attack vector.
+This is where the problem ceases to be
+abstract.  When you connect an
+MCP server to your agent, you are doing three
+things at the same time.  First, you are
+running code written by a third party
+with the permissions you grant them.
+Second, you are relying on an endpoint,
+that is, an external network point without
+having validated its behavior.  And
+third, and this is the most important,
+you are opening a direct channel through
+which that server can input text and
+instructions within the context of the
+model.  And there's one more rule: the
+impact radius of an attack is not limited to the
+compromised server.  Be careful with that.  It is
+equal to the sum of the permissions of all
+the servers that you have connected to the
+same agent.  Remember the image from the
+previous slides.  In other words, if
+one falls, everyone falls many times, right?   It
+also depends on configurations and other
+factors, but we're not going to get into
+that yet because it's not
+the main focus of this video.  The
+security community has documented and
+named five classes of
+specific MSP attacks between 2025 and 2026.
+This may change over time,
+[music] even tomorrow.  All of them
+are active, all of them have
+real cases, and all of them will actually appear
+in this video at some point during the
+recording, right?  One, injection through
+tool responses.  Two, tool
+pois or tool poisoning.
+three or rook tools,
+silent redefinition,
+four shadow win tools and
+cross server attack, that is, between
+servers, basically.  Five, the
+so-called lethal trifecta, a pattern
+identified by the researcher, in
+fact, Simon Wilson.
+And we're going to look at them one by one, don't
+worry, quickly.  I'm not going to get into
+such a
+technical issue,
+but oh well.  The first class for those
+interested is prom injection through
+tool responses.  In
+English, uh, promu injection of
+instructions.  The attack works as
+follows.  The model calls a
+legitimate tool, for example, reading
+an email, checking a ticket.  That
+tool returns data, but within
+that data there are
+hidden instructions for the model.  The model, when
+processing the response, interprets those
+instructions as if they were
+user commands.  For example, in a bank, a
+customer service MCP server receives
+a ticket sent by an attacker.  Ccket
+contains this invisible text that
+instructs the model to send the
+complete account history to an
+external email address.  For example, the OBS model
+because it does not distinguish between
+user instructions and data content.
+This is the most difficult problem to
+solve, in fact, of the entire family, and it does
+not yet have a complete solution at the
+model level.
+The second class is Tools Poison, which in
+Spanish is tool poisoning.
+When an MCP server connects, the
+first thing it does is declare what
+tools it offers with a name and a
+description.  The model reads those
+descriptions to know when to use
+each tool.  Here's the trick.  If
+the server is malicious, that
+description may contain
+hidden instructions directed to the model, and the model
+processes them as part of its
+system context, not as external data.
+In fact, a 2025 study reviewed
+1899
+public servers and found that
+approximately 5.5%
+showed signs of this
+vulnerability.  This turns the
+tool description into an
+invisible attack channel for the
+end user.  Then we have the RCK
+puls, as I mentioned, which is
+the third class, a term taken from the
+world of cryptocurrencies, in fact,
+which translates as pulling the rug out from under you.
+The practical translation of fact in
+MCP security is
+silent redefinition.
+It works as follows.
+You install an MCP server on your agent and it
+behaves perfectly for days or weeks
+.  You gain their trust.  Then
+the server author releases an
+update, and in that update,
+the internal definition of one or
+more tools changes.  The agent continues
+to execute them because the original permit has
+already been granted.  For example, in
+Retail, to mention one sector, an
+MCP server for inventory management
+changes its function to list products and from
+that update onwards, every time it is
+called, it sends the internal purchase prices
+to a competitor's endpoint.
+The user never approved this new
+behavior, but also has no way
+of knowing what changed.  For example.  Now
+, the fourth class groups two
+related attacks.  The to el tools eh
+Shadow Win in Spanish is hat of
+tools.  A malicious server
+registers a tool with a name
+very similar to that of another
+legitimate tool.  When the model tries to
+call the legitimate one, the similar name
+intercepts the call, the attack is a
+cross-server attack, that is, between
+servers.  And here a
+compromised server does not directly attack the
+user, it attacks the model so that the
+model misuses another
+connected server.  For example, a
+malicious task server convinces the model
+to send sensitive information using
+the legitimate mail server.
+In fact, studies from 2026
+show a cross-server propagation rate
+of 72% and 2.4%
+when multiple servers are
+compromised at the same time.  This
+means that if one falls,
+the others will also become
+weapons, if not further.
+However, the fifth class is not a
+specific attack; it is a pattern
+described by researcher Simon
+Wilson in April 2025 and is known
+as the lethal trifecta.  An
+artificial intelligence agent becomes
+exploitable when it combines three capabilities
+at the same time.  First, access to
+private data.  Be careful with that.  For example,
+email, internal documents,
+source code.  Second, exposure to
+unreliable external data, for example,
+content, web page,
+third-party messages, server responses.  And
+third, the ability to communicate with
+the outside world.  For example, being able to
+send emails or make requests to
+web addresses.  When an agent has
+all three [music], it no longer matters how
+good the model is.  An attacker can
+read private data
+through the external channel.  The only
+real defense is to break one of the three
+legs.
+Now, let's get to the real cases,
+starting with the one we mentioned at the
+beginning of this video.  In
+February 2026,
+Checkpoint Research published an
+analysis of Cloud Code,
+Antropic's official coding tool.  The vulnerability listed,
+as you can see, well, 2025-59
+536
+with a CBSS score of 8.7
+allows the following chain of attacks.
+And here are the initials, right?  CBS, just so
+you know, stands for
+common vulnerability and exposure.
+CBSS, for those who know, stands for
+common vulnerability coding
+system
+.  And the
+last part of RCE means remote code
+execution, which in Spanish is ejection
+remota de código.  Well, the vector is as
+follows.  After explaining
+the acronyms so that they understand what
+the initials mean.
+First, an attacker creates a repository on
+GitHub that contains a file, a
+file called puncloud/setting.
+Jason two.  That file defines what
+Cloud Code calls with a hook, that is,
+a command that is executed
+automatically on certain events.
+Third, when the developer speaks,
+the repository is opened;
+that hook runs before the
+trust dialog appears on screen.  Fourth
+result, remote execution of code on
+the developer's machine just by
+opening the project.  Clearly, this has
+some variations depending on
+local configurations and issues, including configuration or
+trust issues, which often avoid or
+change the order of factors.  But we're not going
+to delve into
+technical issues.   Let's
+continue telling anecdotes.  Second
+case, in January 2026, researcher
+Sharden Borat from the company Siata
+published an exploit chain against
+Antropic's official Kit MCP server.
+We repeat, officially,
+the reference server is maintained by
+the company that created the
+protocol.  The chain involves three
+vulnerabilities.  The first CB of
+2025-783,
+a patch
+traversal in Spanish, well,
+route traversal,
+that is, the ability to leave the
+allowed directory.  Second, it looks like,
+well, 2025-78744,
+uh, an arguments injection or
+command line argument injection.
+Third, well, the CBE, let's
+skip the number, it wasn't relevant, uh,
+a repository scope bypass
+that allows you to touch code outside the
+authorized project.  Combined, well,
+they allow remote code execution and
+most importantly, the chain is triggered
+only with a prompt injection.  The
+lesson is straightforward.  If the
+official reference implementation
+contained these flaws, any
+third-party MCP server with fewer
+resources should be considered suspect
+by default.
+Now, to continue with cases,
+Shine Hallut is the name of a
+computer worm that started in the
+NPM ecosystem.
+The package manager basically does not
+steal developer credentials.   It
+evolved in 2026.
+OX Security researchers documented variants of
+Halut that spread using
+malicious MCP servers as the primary vector.
+Instead of only affecting
+code libraries, it now infects.
+The impact is that
+entire supply chains of agents already
+in the chain are compromised.  It's basically a
+beverage chain.  A developer basically
+installs a seemingly harmless MCP server,
+and from there the worm
+steals credentials and
+passwords, spreads to other projects,
+and potentially infects the
+MCP servers that the same developer publishes.
+However, the figures for the
+current situation are what you are seeing on
+screen and are public.
+The company Exactly found that 43%
+of the eh servers they tested are
+vulnerable to command injection.
+Endorlabs analyzed 2614
+servers and determined that 82%
+performed file operations
+susceptible to patch traversal.
+Blue Rock Security scanned more than 7,000
+servers and found that 36.7%
+are vulnerable to SSRF.
+Well, so you know, the acronym SSR
+F stands for server S request forget, which
+in Spanish is
+request forgery from the server side.  An
+attack where the server ends up
+making requests for web addresses
+that the attacker controls.
+Creep has already scanned 1000 servers,
+finding that 33%
+have critical vulnerabilities, and Agent,
+after scanning 1808 servers, reported that 66%
+have at least one relevant security finding
+.
+The numbers leave no room for
+interpretation.  Most
+MCP servers in production today have
+security problems.  Clearly a
+great source of employment and a reflection of the
+need in the face of these technologies and the
+emerging market.  The emerging AI is
+key to
+understanding and managing cybersecurity.
+But let's continue [snort]
+now to the part everyone's been waiting for,
+basically, what can be done?  No, the
+community converged on a
+layered defense model.  No
+single layer is sufficient.  Combined, each
+layer reduces the impact radius
+by approximately half.  In
+production, it is recommended to have at least
+three active layers at the same time.  There are
+five of them.  One, approved list of
+servers.  Two, containerized insulation
+.  Three or outs with resource
+indicators.  Four runtime observability
+.  Five, the famous human.
+In the circuit for sensitive,
+critical actions.  But in case you don't understand
+, I'll briefly explain them
+one by one.  [snort] Layer one, which
+is called the approved server list.
+Well, the basic rule is simple.  No
+MCP server connects to a
+production agent without going through a
+prior validation process.  The minimum criteria
+are [clears throat] four.  One,
+verified origin.  The official MCP registry,
+launched in the first quarter of 2026,
+includes signatures and
+supplier verification.  Community registrations and
+direct installations from
+Gitcapen repositories
+are the most common installation methods, ensuring consistent verification
+.  Two, code audit or
+reproducible review.  Someone needs to
+read what the server does before
+connecting to it, basically.  Three,
+anchored version.  Never install with the label "
+tests in Spanish".  Finally, always
+set the exact version and validate each
+update.  Four, an
+internal register with the list of servers
+allowed by each team.  Without a
+whitelist, there is no perimeter.
+Now, layer two, this one is
+container insulation.  Well, each
+server should run within an
+environment isolated from the main system
+through the operating module or whatever practice
+you prefer.  The
+minimum requirements are, first, a
+read-only file system, except for the
+specific paths that the server needs.
+Second, without default network access
+, internet access must be provided
+through an explicit allow,
+i.e., a whitelist of
+permitted domains.  Third, without access to
+environment variables of other
+servers, of other services, sorry,
+to avoid cross-credential leaks
+.  Fourth, hard limits of CPU and
+memory.  And one recommendation:
+use ephemeral containers that are
+destroyed at the end of the session so that
+no state survives between
+executions.  If a server goes down, the damage
+remains within that container.
+Now, in layer three it is the out of
+resource indicators.  Well, just so
+you know, o out means open
+authorization,
+uh, or open authorization.  It is the
+standard by which a service
+grants limited access to an application
+without sharing credentials.  Resource
+indicators, which means
+resource indicators, is a feature defined in
+the RFC 8707 standard.
+Its function is to link each
+access token to a specific resource.  In other
+words, a token issued to work
+with GitHub shouldn't work on a
+Google Drive, for example,
+even if [snort] the server
+tries to reuse it.  The rule that
+governs this layer is the rule of least
+privilege.  One token per
+connected server.  Two, scope
+limited only to the actions
+strictly necessary.  Three,
+short lifespan of minutes or hours, not
+days.  Four, automatic revocation
+when the server disconnects without
+minimum privilege.  The radius of impact
+of any attack is multiplied.
+Now, layer four is
+run-time observability, that is,
+observability at runtime.
+The following must be registered
+.  One, each call to a
+tool with the full input and the
+full output, not just the
+final result visible to the user.  Two, the
+context of the model before the call
+and after the call.  Third, the origin
+of each instruction that the model
+processes, whether it came from the user, whether it came
+as a response from a tool, or whether it
+was in the system prompt.  Here is
+a critical rule.  Records
+cannot be stored within the
+application.  They must be stored in the
+infrastructure
+controlled by the security team.
+The simple reason is that a compromised agent
+has access to the same environment as the
+application and can therefore alter its
+own application logs.  Only
+records that come from outside the
+attacker's people are reliable.
+Now, let's move on to the next layer,
+which is the one I'll mention, human,
+which in Spanish is human in the circuit.
+The idea is [clears throat] that certain
+actions should never be carried out without
+explicit human approval in the
+environment, at the time, in addition to the
+environment.  The minimum list is one, sending
+emails or any message to the
+outside.  Two, writing to
+production file systems.  Three, execution of
+Shell commands.  Four,
+data transfers to
+external domains.  Five, changes in the
+configuration of outs or secrets.  The
+principle, the guiding principle of this entire
+architecture, and this applies to all
+work with Ya, is that Ya is a
+co-pilot, never an autopilot.
+People propose, humans approve.
+Man proposes, God disposes.  That
+separation is what prevents a prom
+injection from becoming an
+irreversible incident.
+And before we close this [musical]
+exercise in technical honesty, not
+all MCP problems have a
+solution today.  First, promise injection
+through tool outputs is
+an open problem for the entire
+AI industry.  Model-level defenses
+mitigate it, but do not eliminate it.
+Second, the inference of intentions
+between servers.  No
+published defense fully stems from the fact that a
+server
+prevents a server from deceiving the
+model to abuse another
+connected server.
+The minimum privilege limits the damage,
+but does not prevent the attack.  Third, the
+verification of servers in
+community registries.  There is no
+uniform process and most installations
+still come from unsigned repositories
+.  The practical consequence is the
+following.  Real defense lies in the
+architecture of the system, not in the
+model.  A smarter model won't fix
+an architecture that blindly relies
+on its tools.
+So,
+what's important?
+We conclude with this slide, which is used
+in the industry to explain the
+problem to a safety officer in just one minute.  If
+you want, that guy is a chief
+information security officer who would be
+[snort] the director to make it
+easy for you.  The slide you
+are looking at says, let me explain.  Each
+MCP server connected to your agent does
+three things at the same time.  One,
+third-party code that you are running on your
+infrastructure.  Two, an external endpoint
+that you are trusting without having
+validated it.  Three, a channel through which
+direct instructions enter the
+context of your model.  And the
+final equation, the radius of impact of any
+incident is equal to the sum of the
+permissions of all the servers you have
+connected.
+That's the conversation that needs to be had
+before the next incident happens,
+clearly not after.
+To wrap up this video and leave you now,
+these are the resources where you can find more information,
+even if you want to delve deeper,
+if you want to search for more, in addition to
+the training and other courses
+we offer, both paid and
+free, with, as always,
+very affordable access.
+All the explanation and information is
+in the description, and if I remember, I'll
+pin it to the first
+comment.
+The final specification lives, in fact,
+in the model context protocol.
+That is the first option that I even
+share with you, along with updated best practices
+if desired.
+Clearly, the information will always
+be on the internet, and the goal
+is always to share it through
+these means, including YouTube,
+in addition to obviously being able to choose
+other alternatives, such as those I've listed in
+the description.  So without further ado,
+friends, I hope you enjoyed the
+video.  See you next time.  I'm sending you
+a digital hug.  Yeah.
